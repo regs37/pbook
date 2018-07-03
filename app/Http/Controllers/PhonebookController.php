@@ -11,11 +11,7 @@ use Illuminate\Http\Request;
 
 class PhonebookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index() {
         if (Auth::check()){
             $countries = Country::orderBy('name','ASC')->get();
@@ -25,22 +21,7 @@ class PhonebookController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -72,51 +53,36 @@ class PhonebookController extends Controller
                 ]);
             }
         }
-        return redirect('phonebook');
+        return redirect('phonebook')->with('success', 'Successfully created a new contact');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Phonebook  $phonebook
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Phonebook $phonebook)
-    {
-        //
+    public function edit($id){
+        $phonebook = Phonebook::find($id)->first();
+        return view('edit-phonebook')
+        ->with("phonebook",$phonebook)
+        ->with("id",$id)
+        ->with("countries",Country::orderBy('name','ASC')->get());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Phonebook  $phonebook
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Phonebook $phonebook)
-    {
-        //
-    }
+    public function update(Request $request,$id){
+        $phonebook = new Phonebook();
+        $validator = Validator::make($request->all(), [
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'mobile_number'  => 'required|numeric',
+            'street'        => 'required',
+            'city'          => 'required',
+            'country'       => 'required',
+            'state'         => 'required'
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Phonebook  $phonebook
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Phonebook $phonebook)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Phonebook  $phonebook
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Phonebook $phonebook)
-    {
-        //
+        if ($validator->fails()) {
+            return redirect('edit/phonebook/'.$id)
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
+            $phonebook->updatePhonebook($request,$id);
+        }
+        return redirect('edit/phonebook/'.$id)->with('success', 'New support ticket has been updated!!');
     }
 }

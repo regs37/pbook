@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Phonebook extends Model{
@@ -46,4 +47,20 @@ class Phonebook extends Model{
     public function getLastNameAttribute($value){
         return ucfirst($value);
     }
+
+    public function updatePhonebook($request,$id)
+	{
+        $phonebook = $this->find($id);
+        $phonebook->user_id = Auth::id();
+        $phonebook->first_name = $request['first_name'];
+        $phonebook->last_name = $request['last_name'];
+        $phonebook->phone_number = $request['phone_number'];
+        $phonebook->mobile_number = $request['mobile_number'];
+        $phonebook->street = $request['street'];
+        $phonebook->city = $request['city'];
+        $phonebook->country_id = $request['country'];
+        $phonebook->state_id = $request['state'];
+        $phonebook->save();
+        return 1;
+	}
 }

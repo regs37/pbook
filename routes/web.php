@@ -17,7 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'PhonebookControlle@index')->name('home');
+Route::get('/home', 'PhonebookController@index')->name('home');
 Route::get('/phonebook', 'PhonebookController@index')->name('phonebook');
-Route::post('/add_contact', 'PhonebookController@store')->name('add_contact');
 Route::get('/state/get/{id}','StateController@getStates')->name('getState');
+
+Route::post('/add_contact', 'PhonebookController@store')->name('add_contact');
+Route::post('/edit/phonebook/{id}','PhonebookController@update')->name('updatePhonebook');
+Route::get('/edit/phonebook/{id}','PhonebookController@edit')->name('editPhonebook');

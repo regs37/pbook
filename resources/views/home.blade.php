@@ -34,7 +34,7 @@
                                     <strong>Mobile:</strong> {{ $phonebook->mobile_number }}<br>
                                 </small>
                                 
-                                
+                                <a href="{{action('PhonebookController@edit', $phonebook->id)}}" class="btn btn-default">View</a>
                               </div>
                             </div>
                         <hr>
