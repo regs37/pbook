@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Phonebook;
 use App\Country;
+use App\User;
 use Validator;
 use Auth;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class PhonebookController extends Controller
         if (Auth::check()){
             $countries = Country::orderBy('name','ASC')->get();
             return view('home')
-            ->with('phonebooks',Phonebook::all())
+            ->with('phonebooks',User::find(Auth::id())->phonebook)
             ->with('countries',$countries);
         }
     }

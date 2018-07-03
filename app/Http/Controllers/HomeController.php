@@ -24,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home')->with('phonebooks',Phonebook::all());
+        if (Auth::check()){
+            $countries = Country::orderBy('name','ASC')->get();
+            return view('home')
+            ->with('phonebooks',User::find(Auth::id())->phonebook)
+            ->with('countries',$countries);
+        }
     }
 }
