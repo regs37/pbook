@@ -12,12 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	if (Auth::check()){
+	    return redirect('phonebook');
+	} else {
+		return view('welcome');
+	}
+
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PhonebookController@index')->name('home');
 Route::get('/phonebook', 'PhonebookController@index')->name('phonebook');
 Route::get('/state/get/{id}','StateController@getStates')->name('getState');
 

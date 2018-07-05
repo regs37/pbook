@@ -12,14 +12,22 @@
 
 .jumbotron {
 	color: #ffff;
+	
+    padding: 40px 80px 200px 80px;
+}
+
+.jumbotron .display-4 {
+	text-shadow: 0px 3px 10px rgba(0,0,0,0.2);
+}
+
+.jumbotron,
+.banner {
 	background-color: #6c7ed9;
 	background-image: url(../img/about-2000.png);
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
-    padding: 40px 80px 200px 80px;
 }
-
 .jumbotron .btn-brand {
 	color: #6c7ed9;
 	letter-spacing: 3px;
@@ -65,20 +73,26 @@
 }
 
 
-.panel-default.login {
+.panel-default {
 	border:none;
 	box-shadow: 0px 3px 15px rgba(0,0,0,0.1);
-	margin-top: 60px;
-}
-.login .panel-body{
-	padding: 30px !important;
 }
 
-.login .form-control {
+.panel-default.login {
+	
+	margin-top: 60px;
+}
+.panel-body{
+	padding: 30px !important;
+}
+.form-control {
 	padding-left: 20px;
 	background-color: rgba(0,0,0,0.075);
 	border:none;
 	box-shadow: none;
+}
+.login .form-control {
+	padding-left: 20px;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
 	border-bottom-left-radius: 20px;
@@ -100,3 +114,36 @@
 .btn-gradient {
 	background: linear-gradient(-45deg,#6c7ed9,#663abf);
 }
+
+.banner {
+	padding: 30px 200px;
+}
+
+.banner .navbar-default {
+	background: transparent;
+	border: transparent;
+	color: #ffff;
+}
+.banner .navbar-default .navbar-text,
+.banner .navbar-default .navbar-link{
+	color: #ffffff;
+}
+
+.banner .navbar-default .navbar-btn {
+	background: rgba(255,255,255,0.085);
+	color: #ffffff;
+	text-transform: uppercase;
+	border: none;
+	font-weight: bold;
+}
+
+.banner .navbar-default .navbar-btn:hover,
+.banner .navbar-default .navbar-btn:focus {
+	background: rgba(255,255,255,0.2);
+}
+
+
+#main-content {
+	margin-top: -50px;
+}
+

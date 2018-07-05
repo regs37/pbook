@@ -1,18 +1,39 @@
 @extends('layouts.app')
 
+@section('nav')
+@endsection
+
 @section('content')
-<div class="container">
+<div class="banner">
+    <div class="">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="{{ route('phonebook') }}">
+                    <img alt="Brand" src="{{ asset('img/logo-2.png') }}" height="35">
+                  </a>
+                </div>
+                <a type="button" class="btn btn-default navbar-btn navbar-right" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sign Out</a>
+                <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{ ucfirst(Auth::user()->name) }}</a>&nbsp;&nbsp;&nbsp;</p>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </div>
+        </nav>
+        <br><br>
+    </div>
+</div>
+<div class="container" id="main-content">
     <div class="row">
         <div class="col-md-6 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Phonebook</div>
-
+                <div class="panel-body">
                     @foreach($phonebooks as $phonebook)
                         <hr style="margin: 0px">
                             <div class="media">
                               <div class="media-left">
                                 <a href="#">
-                                  <img class="media-object" src="https://www.brandeps.com/icon-download/U/User-01.svg" alt="profile" width="50" height="50">
+                                  <img class="media-object" src="{{ asset('img/contact.png') }}" alt="profile" width="50" height="50">
                                 </a>
                               </div>
                               <div class="media-body">
@@ -32,6 +53,7 @@
                             </div>
                         <hr style="margin-bottom: -1px;">
                     @endforeach
+                </div>
             </div>
         </div>
         <div class="col-md-4">
