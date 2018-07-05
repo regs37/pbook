@@ -3,8 +3,9 @@
 @section('content')
 <div class="container">
     
-    <div class="panel panel-default col-sm-6">
+    <div class="panel panel-default col-sm-6 col-sm-offset-3">
         <div class="panel-body">
+                <a href="{{ route('phonebook') }}"><-- Back</a><br><br>
             <form method="POST" action="{{action('PhonebookController@update', $id)}}">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -55,7 +56,7 @@
                     <select id="country-selector" class="form-control" name="country" >
                         <option>- Country -</option>
                         @foreach($countries as $country)
-                            @if ($country->id === $phonebook->country_id) selected
+                            @if ($country->id === $phonebook->country_id)
                                  <option value='{{ $country->id }}' selected>{{ $country->name }}</option>
                             @else
                                 <option value='{{ $country->id }}'>{{ $country->name }}</option>
@@ -64,9 +65,16 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div id="state" class="form-group">
+                    <label>State</label>
                     <select id="state-selector" name="state" class="form-control" name="country" >
-                        <option></option>
+                        @foreach($states as $state)
+                            @if ($state->id === $phonebook->state_id)
+                                <option value="{{ $state->id }}" selected>{{ $state->name }}</option>
+                            @else
+                                <option value="{{ $state->id }}">{{ $state->name }}</option>
+                            @endif
+                        @endforeach
                     </select>
                 </div>
 
@@ -79,20 +87,6 @@
 
 @section('javascript')
     <script type="text/javascript">
-        if($("#country-selector").val() != ""){
-            var state = $("#state-selector");
-            $.getq('getBookings',"../../state/get/"+$("#country-selector").val(),null,function(data){
-                var raw = jQuery.parseJSON(data);
-                var interface = "";
-                $.each(raw,function(key,e){
-                    var current_id = "{{ $phonebook->country_id }}";
-                    var selected = (current_id===e.id)?"selected":"";
-                    interface += "<option value='"+e.id+"' "+selected+" >"+e.name+"</option>";
-                });
-                $(state).html(interface);
-            });
-            $.ajaxq.clear('getBookings');
-        }
         $("#country-selector").on("change",function(){
             var state = $("#state-selector");
             $.getq('getBookings',"../../state/get/"+$(this).val(),null,function(data){

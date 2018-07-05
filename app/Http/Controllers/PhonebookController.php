@@ -61,6 +61,7 @@ class PhonebookController extends Controller
         return view('edit-phonebook')
         ->with("phonebook",$phonebook)
         ->with("id",$id)
+        ->with("states",$phonebook->country->state)
         ->with("countries",Country::orderBy('name','ASC')->get());
     }
 
@@ -83,6 +84,7 @@ class PhonebookController extends Controller
         } else {
             $phonebook->updatePhonebook($request,$id);
         }
-        return redirect('edit/phonebook/'.$id)->with('success', 'New support ticket has been updated!!');
+        $phonebookData = Phonebook::find($id)->first();
+        return redirect('phonebook')->with('success', $phonebookData->first_name." ".$phonebookData->last_name.' has been successfully updated');
     }
 }

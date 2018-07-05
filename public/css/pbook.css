@@ -1,0 +1,9 @@
+.media .media-body {
+	padding-right: 15px;
+}
+.edit-trigger {
+	display:none;
+}
+.media:hover .edit-trigger {
+	display:block;
+}

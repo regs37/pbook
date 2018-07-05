@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('style')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pbook.css') }}">
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -25,16 +29,17 @@
                               </div>
                               <div class="media-body">
                                 <h4 class="media-heading">
+                                    
                                     {{ $phonebook->first_name." ".$phonebook->last_name }} -
                                     <small>{{ ucwords($phonebook->street.", ".$phonebook->city.", ".$phonebook->country->name) }}</small>
+                                    <small class=" edit-trigger pull-right"><a href="{{action('PhonebookController@edit', $phonebook->id)}}">Edit</a></small>
+                                    
                                 </h4>
                                 <small>
                                     <strong>Phone:</strong> {{ $phonebook->phone_number }} 
                                     &nbsp;  &nbsp;
                                     <strong>Mobile:</strong> {{ $phonebook->mobile_number }}<br>
                                 </small>
-                                
-                                <a href="{{action('PhonebookController@edit', $phonebook->id)}}" class="btn btn-default">View</a>
                               </div>
                             </div>
                         <hr>
@@ -53,6 +58,9 @@
                                     @endforeach
                                 </ul>
                             </div>
+                        @endif
+                        @if(session('success'))
+                            <div class="alert alert-success">{{session('success')}}</div>
                         @endif
                         {{ csrf_field() }}
                         <div class="row">
@@ -98,7 +106,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div id="state" class="form-group hidden">
+                             <label>State</label>
                             <select id="state-selector" name="state" class="form-control" name="country" >
                             </select>
                         </div>
@@ -123,6 +132,7 @@
                     interface += "<option value='"+e.id+"''>"+e.name+"</option>";
                 });
                 $(state).html(interface);
+                $("#state").removeClass("hidden");
             });
             $.ajaxq.clear('getBookings');
         });
