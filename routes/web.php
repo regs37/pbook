@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'PhonebookController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/phonebook', 'PhonebookController@index')->name('phonebook');
 Route::get('/state/get/{id}','StateController@getStates')->name('getState');
 

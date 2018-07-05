@@ -5,6 +5,98 @@
 .edit-trigger {
 	display:none;
 }
+
 .media:hover .edit-trigger {
 	display:block;
+}
+
+.jumbotron {
+	color: #ffff;
+	background-color: #6c7ed9;
+	background-image: url(../img/about-2000.png);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+    padding: 40px 80px 200px 80px;
+}
+
+.jumbotron .btn-brand {
+	color: #6c7ed9;
+	letter-spacing: 3px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-weight: bold;
+	font-size: 14px;
+	text-transform: uppercase;
+	background-color: rgba(255,255,255,0.9);
+}
+.jumbotron .btn-brand:hover,
+.jumbotron .btn-brand:focus {
+	background-color: rgba(255,255,255,0.7);
+}
+
+.jumbotron .login-button{
+	margin-left: 20px;
+	color: #ffffff;
+	letter-spacing: 3px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.jumbotron .login-button:hover{
+	text-decoration: none;
+}
+.jumbotron .lead {
+	max-width: 900px;
+}
+
+.logo-text{
+	line-height: 50px;
+	padding-left: 15px;
+	font-weight: bold;
+}
+
+.navbar-buttons {
+	padding-top: 10px;
+}
+
+.deduct-top {
+	margin-top: -100px;
+}
+
+
+.panel-default.login {
+	border:none;
+	box-shadow: 0px 3px 15px rgba(0,0,0,0.1);
+	margin-top: 60px;
+}
+.login .panel-body{
+	padding: 30px !important;
+}
+
+.login .form-control {
+	padding-left: 20px;
+	background-color: rgba(0,0,0,0.075);
+	border:none;
+	box-shadow: none;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+.login .btn {
+	border: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.btn-gradient {
+	background: linear-gradient(-45deg,#6c7ed9,#663abf);
 }
