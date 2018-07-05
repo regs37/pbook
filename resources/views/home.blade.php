@@ -9,16 +9,8 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Phonebook</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                </div>
                     @foreach($phonebooks as $phonebook)
                         <hr style="margin: 0px">
                             <div class="media">
@@ -42,7 +34,7 @@
                                 </small>
                               </div>
                             </div>
-                        <hr>
+                        <hr style="margin-bottom: -1px;">
                     @endforeach
             </div>
         </div>
